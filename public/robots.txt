@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pablo-parrilla.example.com/sitemap-index.xml

@@ -1,0 +1,25 @@
+---
+import { site } from '../config/site';
+---
+<section id="comanda" class="section order" aria-labelledby="order-title"><div class="container order-grid"><div><p class="section-kicker">Reservá tu fecha</p><h2 class="display section-title">Hablemos de tu mesa</h2><p class="intro">Completá la comanda y te llevo directo a WhatsApp con el mensaje listo.</p></div><form id="order-form" class="ticket" data-whatsapp={site.whatsapp} data-pixel={site.analytics.metaPixelEnabled ? 'on' : 'off'} novalidate><div class="ticket-head"><span>COMANDA Nº 001</span><small>Gran Asunción</small></div><div class="fields"><label>Tu nombre<input name="name" autocomplete="name" required /></label><label>Fecha del evento<input name="date" type="date" required /></label><label>Personas<input name="people" type="number" inputmode="numeric" min="2" max="1000" required /></label><label>Barrio o ciudad<input name="city" autocomplete="address-level2" required /></label><label>Tipo de evento<select name="type" required><option value="">Elegí una opción</option>{site.eventTypes.map(type => <option value={type}>{type}</option>)}</select></label><label class="wide">Comentarios <span>(opcional)</span><textarea name="comments" rows="3"></textarea></label></div><p id="form-error" class="error" role="alert" aria-live="polite"></p><button class="button" type="submit">Enviar comanda por WhatsApp</button><p class="fine">Al tocar el botón se abrirá WhatsApp. No guardamos tus datos.</p></form></div></section>
+<script>
+  const form = document.querySelector<HTMLFormElement>('#order-form');
+  const error = document.querySelector<HTMLParagraphElement>('#form-error');
+  const source = new URLSearchParams(location.search).get('utm_source') || new URLSearchParams(location.search).get('src');
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); if (error) error.textContent = 'Revisá los campos marcados antes de continuar.'; return; }
+    if (error) error.textContent = '';
+    const data = new FormData(form);
+    const [year, month, day] = String(data.get('date')).split('-');
+    const comments = String(data.get('comments') || '').trim();
+    let message = `Hola, soy ${data.get('name')}. Quiero un asado para ${data.get('people')} personas el ${day}/${month}/${year} en ${data.get('city')}. Es un evento: ${data.get('type')}.`;
+    if (comments) message += ` Comentarios: ${comments}`;
+    if (source) message += ` (${source})`;
+    if (form.dataset.pixel === 'on' && 'fbq' in window) (window as any).fbq('track', 'Lead');
+    window.open(`https://wa.me/${form.dataset.whatsapp}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+  });
+</script>
+<style>
+  .order{background:var(--fire);color:#fff}.order-grid{display:grid;gap:3rem;align-items:start}.intro{max-width:32rem;font-size:1.1rem}.order .section-kicker{color:#120d0a}.ticket{position:relative;padding:clamp(1.3rem,4vw,2.3rem);background:var(--paper);color:var(--ink);border:3px dashed var(--wood);box-shadow:12px 12px 0 #120d0a}.ticket-head{display:flex;justify-content:space-between;gap:1rem;padding-bottom:1rem;border-bottom:4px double var(--ink);font:1.4rem Anton,sans-serif}.ticket-head small{font:1rem Caveat,cursive}.fields{display:grid;gap:1.3rem;margin:1.7rem 0}label{display:flex;flex-direction:column;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em}label span{color:var(--muted);font-weight:400}input,select,textarea{width:100%;padding:.55rem 0;border:0;border-bottom:2px solid var(--ink);border-radius:0;background:transparent;color:var(--ink);outline:0}input:focus,select:focus,textarea:focus{border-bottom-color:var(--fire)}textarea{resize:vertical}.error{min-height:1.5rem;color:#a72700;font-weight:700}.fine{font-size:.74rem;color:var(--muted)}@media(min-width:720px){.fields{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}}@media(min-width:900px){.order-grid{grid-template-columns:.8fr 1.2fr;gap:5rem}}
+</style>

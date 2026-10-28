@@ -1,0 +1,42 @@
+---
+import { site } from '../config/site';
+---
+<section class="section dark menu-section" aria-labelledby="menu-title">
+  <div class="container">
+    <p class="section-kicker">Lo que sale de la parrilla</p>
+    <h2 id="menu-title" class="display section-title">Menú del asador</h2>
+    <div class="board">
+      <div class="board-head"><span>Especialidades</span><span>Por persona</span></div>
+      <ul>{site.menu.map(item => <li><span>{item.name}</span><i></i><strong>{item.price}</strong></li>)}</ul>
+      <p class="chalk">* Armamos el menú según tu evento y tu presupuesto.</p>
+    </div>
+    <div class="packages">
+      {site.packages.map(pkg => (
+        <article class:list={{ featured: pkg.featured }}>
+          {pkg.featured && <span class="seal">El más pedido</span>}
+          <h3 class="display">{pkg.name}</h3>
+          <p>{pkg.description}</p>
+          <strong>{pkg.price}</strong>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .menu-section { background:var(--slate); }
+  .board { margin-top:3rem; padding:clamp(1.2rem,5vw,3rem); border:clamp(10px,2vw,18px) solid var(--wood); outline:2px solid #7a5a38; box-shadow:inset 0 0 28px #0008, 0 18px 40px #0005; background:#18211d; }
+  .board-head { display:flex; justify-content:space-between; gap:1rem; color:var(--gold); text-transform:uppercase; font:1rem Anton,sans-serif; letter-spacing:.06em; border-bottom:1px solid #f1e9dc33; padding-bottom:.8rem; }
+  ul { list-style:none; padding:0; margin:1.6rem 0; }
+  li { display:flex; align-items:baseline; gap:.55rem; margin:1.1rem 0; font-weight:600; }
+  li i { flex:1; border-bottom:2px dotted #f1e9dc55; }
+  li strong { color:var(--gold); white-space:nowrap; }
+  .chalk { color:#f1e9dcaa; font:600 1.45rem Caveat,cursive; }
+  .packages { display:grid; gap:1.25rem; margin-top:2.5rem; }
+  article { position:relative; padding:1.6rem; border:2px solid #f1e9dc44; background:#120d0a; }
+  article.featured { border-color:var(--gold); transform:rotate(-.5deg); }
+  h3 { font-size:2.5rem; }
+  article p { color:#d1c6bc; min-height:3.2rem; }
+  article>strong { display:block; margin-top:1.2rem; color:var(--gold); font-size:1.1rem; }
+  .seal { position:absolute; right:-.65rem; top:-1rem; width:5.3rem; aspect-ratio:1; display:grid; place-items:center; text-align:center; border-radius:50%; background:var(--fire); color:#fff; font:1rem/1 Anton,sans-serif; text-transform:uppercase; transform:rotate(11deg); }
+  @media(min-width:760px){ .packages{grid-template-columns:repeat(3,1fr)} article.featured{transform:translateY(-.8rem) rotate(-.5deg)} }
+</style>

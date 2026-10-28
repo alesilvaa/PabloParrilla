@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import pablo from '../assets/pablo-parrilla.jpg';
+import { site } from '../config/site';
+---
+<header class="hero dark">
+  <div class="embers" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div class="copy">
+      <p class="section-kicker">{site.hero.eyebrow}</p>
+      <h1 class="display">{site.hero.title}</h1>
+      <p class="lead">{site.hero.subtitle}</p>
+      <a class="button" href="#comanda">{site.hero.cta} <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="portrait-wrap">
+      <svg class="round-text" viewBox="0 0 320 320" aria-hidden="true">
+        <defs><path id="circle" d="M160,160 m-134,0 a134,134 0 1,1 268,0 a134,134 0 1,1 -268,0" /></defs>
+        <text><textPath href="#circle" startOffset="0%">PARRILLERO A DOMICILIO ✦ ASADOS CON ALMA ✦ </textPath></text>
+      </svg>
+      <div class="portrait">
+        <Image src={pablo} alt={site.hero.photoAlt} widths={[420, 640, 800]} sizes="(max-width: 760px) 78vw, 430px" loading="eager" fetchpriority="high" quality={88} format="webp" />
+      </div>
+      <span class="stamp">Hecho<br/>con fuego</span>
+    </div>
+  </div>
+</header>
+<style>
+  .hero { position: relative; isolation: isolate; min-height: 720px; padding: clamp(3rem, 8vw, 7rem) 0 clamp(5rem, 9vw, 8rem); overflow: hidden; }
+  .hero::after { content:''; position:absolute; inset:auto -10% -12rem; height:22rem; background:radial-gradient(ellipse, rgba(217,72,15,.34), transparent 65%); z-index:-1; }
+  .embers { position:absolute; inset:0; z-index:-1; opacity:.25; background:radial-gradient(circle at 12% 22%, var(--fire) 0 2px, transparent 3px),radial-gradient(circle at 84% 66%, var(--gold) 0 1px, transparent 2px),radial-gradient(circle at 72% 18%, var(--fire) 0 1px, transparent 2px); background-size:91px 91px, 137px 137px, 61px 61px; }
+  .hero-grid { display:grid; gap:4rem; align-items:center; }
+  .copy { text-align:center; position:relative; z-index:2; }
+  h1 { font-size:clamp(4.5rem, 17vw, 9.5rem); max-width:9ch; margin-inline:auto; }
+  .lead { max-width:35rem; margin:1.5rem auto 2rem; font-size:clamp(1.05rem, 2.6vw, 1.35rem); color:#d8cfc8; }
+  .button { gap:.8rem; }
+  .button span { font-size:1.3rem; }
+  .portrait-wrap { position:relative; width:min(88vw, 460px); margin-inline:auto; aspect-ratio:1/1.08; display:grid; place-items:center; }
+  .portrait { width:76%; aspect-ratio:.83; overflow:hidden; border:4px solid var(--gold); border-radius:50% 50% 14px 14px / 30% 30% 14px 14px; box-shadow:0 0 0 8px #120d0a, 0 0 55px rgba(217,72,15,.62); background:#2a211c; }
+  .portrait :global(img) { width:100%; height:100%; object-fit:cover; object-position:52% 34%; }
+  .round-text { position:absolute; inset:0; width:100%; height:100%; animation:spin 28s linear infinite; overflow:visible; }
+  .round-text text { fill:#f1e9dc; font:18px Anton, Impact, sans-serif; letter-spacing:2.3px; }
+  .stamp { position:absolute; right:0; bottom:9%; width:5.6rem; aspect-ratio:1; display:grid; place-items:center; text-align:center; border:2px solid var(--fire); border-radius:50%; background:var(--bone); color:var(--fire); font:600 1.2rem/1 Caveat,cursive; transform:rotate(9deg); }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  @media (min-width: 840px) {
+    .hero-grid { grid-template-columns:1.12fr .88fr; gap:1rem; }
+    .copy { text-align:left; }
+    h1, .lead { margin-left:0; }
+    .portrait-wrap { order:2; }
+  }
+</style>

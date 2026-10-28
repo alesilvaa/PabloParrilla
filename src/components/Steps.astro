@@ -1,0 +1,25 @@
+---
+import { site } from '../config/site';
+---
+<section class="section steps" aria-labelledby="steps-title">
+  <div class="container">
+    <p class="section-kicker">Sin vueltas</p>
+    <h2 id="steps-title" class="display section-title">Cómo trabajo</h2>
+    <ol>
+      {site.steps.map((step, i) => (
+        <li>
+          <span class="num">0{i + 1}</span>
+          <div><h3 class="display">{step.title}</h3><p>{step.text}</p></div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+<style>
+  ol { list-style:none; padding:0; margin:3.5rem 0 0; display:grid; gap:1.2rem; }
+  li { display:grid; grid-template-columns:auto 1fr; gap:1.1rem; align-items:start; padding:1.35rem 0; border-top:2px solid color-mix(in srgb, var(--ink) 22%, transparent); }
+  .num { color:var(--fire); font:clamp(3.5rem, 14vw, 6.5rem)/.8 Anton,Impact,sans-serif; }
+  h3 { font-size:clamp(2rem,7vw,3.2rem); }
+  p { margin:.5rem 0 0; color:var(--muted); max-width:34ch; }
+  @media(min-width:760px){ ol{grid-template-columns:repeat(3,1fr);gap:2rem} li{display:block}.num{display:block;margin-bottom:1.5rem} }
+</style>

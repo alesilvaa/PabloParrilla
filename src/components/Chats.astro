@@ -1,0 +1,19 @@
+---
+import { site } from '../config/site';
+---
+<section class="section dark chats" aria-labelledby="chats-title">
+  <div class="container chats-grid">
+    <div><p class="section-kicker">Después del último corte</p><h2 id="chats-title" class="display section-title">Así termina la charla</h2><p class="note">Mensajes de muestra — listos para reemplazar por capturas reales.</p></div>
+    <div class="phone" aria-label="Conversación de muestra en WhatsApp">
+      <div class="phone-head"><span class="avatar">PP</span><div><strong>Pablo Parrilla</strong><small>en línea</small></div></div>
+      <div class="chat-bg">
+        {site.chats.map(message => (
+          <div class:list={['bubble', message.from]}><span>{message.text}</span><small>{message.time} {message.from === 'pablo' && <b aria-label="leído">✓✓</b>}</small></div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .chats-grid{display:grid;gap:3rem;align-items:center}.note{color:#b9aaa0;max-width:30rem}.phone{max-width:29rem;margin:auto;border:8px solid #2e2926;border-radius:28px;overflow:hidden;background:#d9d1c5;box-shadow:0 25px 50px #0007}.phone-head{display:flex;align-items:center;gap:.75rem;padding:.8rem 1rem;background:#18211d}.phone-head div{display:flex;flex-direction:column}.phone-head small{color:#b9c2bc}.avatar{width:2.5rem;aspect-ratio:1;display:grid;place-items:center;border-radius:50%;background:var(--fire);font:1rem Anton,sans-serif}.chat-bg{padding:1rem;background-color:#d7d0c6;background-image:radial-gradient(#8e847755 1px,transparent 1px);background-size:16px 16px}.bubble{width:fit-content;max-width:85%;margin:.6rem 0;padding:.6rem .7rem .35rem;border-radius:7px;background:#fff;color:#201813;box-shadow:0 1px 2px #0002}.bubble.pablo{margin-left:auto;background:#d8f5cb}.bubble small{display:block;margin-left:2rem;text-align:right;color:#6e665e;font-size:.66rem}.bubble b{color:#199bd8}.bubble span{font-size:.92rem}@media(min-width:850px){.chats-grid{grid-template-columns:1fr 1fr}.phone{margin-right:0}}
+</style>

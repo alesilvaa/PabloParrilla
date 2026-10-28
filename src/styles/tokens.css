@@ -1,0 +1,17 @@
+:root {
+  --fire: #d9480f;
+  --gold: #c98a1b;
+  --ink: #120d0a;
+  --bone: #f1e9dc;
+  --slate: #1f2a24;
+  --wood: #5a3d22;
+  --paper: #fffaf0;
+  --muted: #6d625a;
+  --radius: 6px;
+  --max: 1180px;
+  --section: clamp(4.5rem, 9vw, 8.5rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root { --bone: #181310; --paper: #211a16; --ink: #f1e9dc; --muted: #cbbfb3; }
+}

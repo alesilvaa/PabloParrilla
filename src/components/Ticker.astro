@@ -1,0 +1,17 @@
+---
+import { site } from '../config/site';
+const items = [...site.ticker, ...site.ticker];
+---
+<div class="ticker" aria-label="Servicios">
+  <div class="ticker-track">
+    {items.map((item, index) => <span aria-hidden={index >= site.ticker.length}>{item} <b>✦</b></span>)}
+  </div>
+</div>
+<style>
+  .ticker { overflow: hidden; background: var(--fire); color: #fff; border-bottom: 2px solid var(--ink); }
+  .ticker-track { display: flex; width: max-content; animation: tick 28s linear infinite; padding: .48rem 0; }
+  span { padding-inline: 1.2rem; white-space: nowrap; text-transform: uppercase; font: 1.05rem Anton, Impact, sans-serif; letter-spacing: .06em; }
+  b { color: var(--gold); margin-left: 1.2rem; }
+  @keyframes tick { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+</style>
