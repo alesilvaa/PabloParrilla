@@ -1,5 +1,39 @@
 ---
 import { site } from '../config/site';
 ---
-<footer><div class="container"><a class="brand" href="#top">{site.businessName}</a><p>Parrillero a domicilio · {site.serviceArea}</p><a href={`https://instagram.com/${site.instagram}`} target="_blank" rel="noopener noreferrer">Instagram ↗</a></div></footer>
-<style>footer{padding:2.25rem 0 calc(2.5rem + env(safe-area-inset-bottom));background:#120d0a;color:#f1e9dc;border-top:5px solid var(--gold)}footer .container{display:flex;flex-direction:column;gap:.35rem;align-items:flex-start}.brand{font:1.7rem Anton,sans-serif;text-transform:uppercase;text-decoration:none}p{margin:0;color:#bcaea2;font-size:.9rem}footer a:last-child{color:var(--gold);font-weight:800}@media(min-width:700px){footer{padding:3rem 0 calc(3rem + env(safe-area-inset-bottom));border-top-width:6px}footer .container{display:grid;grid-template-columns:1fr auto;align-items:end}.brand{font-size:2rem}p{grid-column:1;font-size:1rem}footer a:last-child{grid-column:2;grid-row:1/3}}</style>
+<footer>
+  <div class="container">
+    <div class="footer-brand">
+      <a class="brand" href="#top">{site.businessName}</a>
+      <p>Parrillero a domicilio · {site.serviceArea}</p>
+    </div>
+    <a class="instagram" href={`https://instagram.com/${site.instagram}`} target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+    <a class="manageopy" href="https://www.manageopy.com" target="_blank" rel="noopener noreferrer" aria-label="Visitar Manageopy, desarrollador del sitio (abre en una pestaña nueva)">
+      <span class="manageopy-logo"><img src="/branding/manageopy-logo.svg" alt="" width="36" height="36" loading="lazy" /></span>
+      <span class="manageopy-copy"><small>Sitio desarrollado por</small><strong>Manageopy <span aria-hidden="true">↗</span></strong></span>
+    </a>
+  </div>
+</footer>
+<style>
+  footer{padding:2.25rem 0 calc(2.5rem + env(safe-area-inset-bottom));background:#120d0a;color:#f1e9dc;border-top:5px solid var(--gold)}
+  footer .container{display:grid;gap:1.25rem;align-items:center}
+  .footer-brand{display:flex;flex-direction:column;gap:.25rem}
+  .brand{font:1.7rem Anton,sans-serif;text-transform:uppercase;text-decoration:none}
+  p{margin:0;color:#bcaea2;font-size:.9rem}
+  .instagram{width:fit-content;color:var(--gold);font-weight:800}
+  .manageopy{display:flex;width:fit-content;align-items:center;gap:.7rem;padding-top:1.1rem;border-top:1px solid #f1e9dc1f;text-decoration:none}
+  .manageopy-logo{width:2.25rem;height:2.25rem;display:grid;place-items:center;overflow:hidden;border:1px solid #ffffff33;border-radius:.65rem;background:#fff}
+  .manageopy-logo img{width:100%;height:100%;object-fit:cover;transform:scale(1.7)}
+  .manageopy-copy{display:flex;flex-direction:column;line-height:1.1}
+  .manageopy-copy small{color:#f1e9dc73;font-size:.5rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+  .manageopy-copy strong{margin-top:.3rem;color:#f1e9dccc;font-size:.82rem;transition:color .2s}
+  .manageopy:hover .manageopy-copy strong{color:#fff}
+  .manageopy:focus-visible{border-radius:.5rem}
+  @media(min-width:700px){
+    footer{padding:3rem 0 calc(3rem + env(safe-area-inset-bottom));border-top-width:6px}
+    footer .container{grid-template-columns:1fr auto auto;gap:2.5rem}
+    .brand{font-size:2rem}
+    p{font-size:1rem}
+    .manageopy{padding-top:0;padding-left:2rem;border-top:0;border-left:1px solid #f1e9dc1f}
+  }
+</style>
