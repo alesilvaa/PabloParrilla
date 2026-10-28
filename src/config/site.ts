@@ -23,8 +23,8 @@ export const site = {
   menu: [
     { name: 'Chorizo artesanal', price: 'Gs. —' },
     { name: 'Costilla vacuna', price: 'Gs. —' },
-    { name: 'Vacío a la cruz', price: 'Gs. —' },
-    { name: 'Mandioca y ensaladas', price: 'Gs. —' },
+    { name: 'Vacío', price: 'Gs. —' },
+    { name: 'Colita y tapa cuadril', price: 'Gs. —' },
   ],
   packages: [
     { name: 'Clásico', description: 'Los infaltables de la parrilla, guarniciones y servicio.', price: 'Desde Gs. —', featured: false },
