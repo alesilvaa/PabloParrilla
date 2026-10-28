@@ -1,6 +1,6 @@
 export const site = {
   businessName: 'Pablo Parrilla',
-  whatsapp: '595981000000', // TODO: reemplazar por el número real
+  whatsapp: '595985934591',
   instagram: 'pabloparrilla', // TODO: reemplazar por el usuario real
   serviceArea: 'Gran Asunción, Paraguay',
   seo: {
