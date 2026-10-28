@@ -11,4 +11,21 @@ import OrderForm from '../components/OrderForm.astro';
 import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
 import Footer from '../components/Footer.astro';
 ---
-<Base><div id="top"><Ticker /></div><main><Hero /><Steps /><Menu /><Gallery /><Chats /><Faq /><OrderForm /></main><Footer /><FloatingWhatsApp /></Base>
+<Base>
+  <div id="top" class="topbar"><Ticker /></div>
+  <main><Hero /><Steps /><Menu /><Gallery /><Chats /><Faq /><OrderForm /></main>
+  <Footer />
+  <FloatingWhatsApp />
+</Base>
+<style>
+  @media (max-width: 759px) {
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 45;
+      padding-top: env(safe-area-inset-top);
+      background: var(--fire);
+      box-shadow: 0 3px 0 rgba(18, 13, 10, .22);
+    }
+  }
+</style>
