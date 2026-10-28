@@ -9,7 +9,11 @@
   --muted: #6d625a;
   --radius: 6px;
   --max: 1180px;
-  --section: clamp(4.5rem, 9vw, 8.5rem);
+  --section: 3.4rem;
+}
+
+@media (min-width: 760px) {
+  :root { --section: clamp(5rem, 9vw, 8.5rem); }
 }
 
 @media (prefers-color-scheme: dark) {
